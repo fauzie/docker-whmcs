@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+  mysql:
+    image: mysql/mysql-server:5.7
+    container_name: "MYSQL"
+    hostname: mysql
+    restart: always
+    networks:
+      whmcs:
+        ipv4_address: 172.18.18.2
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysqrootpass"
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+
+  whmcs:
+    image: whmcs:latest
+    container_name: "WHMCS"
+    hostname: whmcs
+    networks:
+      whmcs:
+        ipv4_address: 172.18.18.3
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      WORKER_PROCESSES: 4
+      VIRTUAL_HOST: whmcs.yourwebsite.com
+      APP_PASSWORD: userapppassword
+      WHMCS_SERVER_IP: 172.18.18.1
+    ports:
+      - 443:433
+      - 2222:2222
+    volumes:
+      - /your/path/to/whmcs:/var/www/whmcs
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+
+networks:
+  whmcs:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      config:
+        - subnet: 172.18.18.0/29
+          gateway: 172.18.18.1

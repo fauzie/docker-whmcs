@@ -1,0 +1,4 @@
+session.save_handler = "{{ default .Env.PHP_SESSION_SAVE_HANDLER "files" }}"
+session.save_path = "{{ default .Env.PHP_SESSION_SAVE_PATH "/var/lib/php/sessions" }}"
+session.gc_divisor = {{ default .Env.PHP_SESSION_GC_DIVISOR "100" }}
+session.gc_probability = {{ .Env.PHP_SESSION_GC_PROPABILITY }}

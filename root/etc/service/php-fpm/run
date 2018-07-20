@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p /run/php && chown -R app:app /run/php
+exec /usr/sbin/php-fpm${PHP_VERSION} -F --pid=/tmp/php-fpm.pid
+

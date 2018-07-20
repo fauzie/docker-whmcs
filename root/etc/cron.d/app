@@ -1,0 +1,15 @@
+#
+# WHMCS Default Crons
+# -------------------
+# @author <rizal@fauzie.my.id>
+#
+# - Run cron every 5 minutes but skip ticket escalations and auto suspensions
+# - Process ticket escalations Monday-Friday during business hours
+# - auto suspension Monday-Friday at the start of business
+# - Ticket Importing using POP3 Import every 5 minutes
+#
+# m h d m w                         user  command
+*/5 * * * *                         app   php -q /var/www/whmcs/crons/cron.php skip --TicketEscalations --AutoSuspensions >/dev/null 2>&1
+0 9,10,11,12,13,14,15,16 * * 1-5    app   php -q /var/www/whmcs/crons/cron.php do --TicketEscalations >/dev/null 2>&1
+0 9 * * 1-5                         app   php -q /var/www/whmcs/crons/cron.php do --AutoSuspensions >/dev/null 2>&1
+*/5 * * * *                         app   php -q /var/www/whmcs/crons/pop.php >/dev/null 2>&1

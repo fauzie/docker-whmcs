@@ -1,0 +1,16 @@
+[www]
+user = app
+group = app
+listen = /run/php/php-fpm{{ .Env.PHP_VERSION }}.sock
+listen.owner = app
+listen.group = app
+pm = dynamic
+pm.max_children = {{ default .Env.FPM_MAX_CHILDREN "5" }}
+pm.start_servers = {{ default .Env.FPM_START_SERVER "2" }}
+pm.min_spare_servers = {{ default .Env.FPM_MIN_SPARE_SERVERS "1" }}
+pm.max_spare_servers = {{ default .Env.FPM_MAX_SPARE_SERVERS "3" }}
+chdir = /
+catch_workers_output = yes
+php_admin_value[error_log] = {{ default .Env.FPM_ERROR_LOG "/dev/fd/2" }}
+php_admin_flag[log_errors] = on
+
