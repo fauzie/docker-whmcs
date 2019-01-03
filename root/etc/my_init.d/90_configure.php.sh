@@ -5,6 +5,10 @@ shopt -s nocasematch
 
 if [[ $PHP_SESSION_SAVE_HANDLER == "files" ]]
  then
+    if [[ ! -d /var/lib/php/sessions ]]; then
+        mkdir -p /var/lib/php/sessions
+        chown -R app:app /var/lib/php
+    fi
 	export PHP_SESSION_GC_PROPABILITY=0
  else
 	export PHP_SESSION_GC_PROPABILITY=1

@@ -30,18 +30,16 @@ services:
       VIRTUAL_HOST: whmcs.yourwebsite.com
       APP_PASSWORD: userapppassword
       WHMCS_SERVER_IP: 172.18.18.1
+      HTTPS: "on"
     ports:
-      - 443:433
+      - 80:80
       - 2222:2222
     volumes:
       - /your/path/to/whmcs:/var/www/whmcs
-      - /etc/letsencrypt:/etc/letsencrypt:ro
 
 networks:
   whmcs:
     driver: bridge
-    driver_opts:
-      com.docker.network.enable_ipv6: "false"
     ipam:
       config:
         - subnet: 172.18.18.0/29

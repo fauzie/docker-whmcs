@@ -18,7 +18,6 @@ COPY    root/ /
 
 RUN     chmod -v +x /etc/my_init.d/*.sh /etc/service/*/run
 
-EXPOSE  443
 EXPOSE  2222
 
 VOLUME  /var/www/whmcs

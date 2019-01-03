@@ -36,5 +36,7 @@ fi
 chown -R app:app /var/www/.ssh
 chmod 700 /var/www/.ssh
 
-update-rc.d ssh defaults
-/etc/init.d/ssh start
+# add ssh to upstart
+if [[ -f /etc/service/sshd/down ]]; then
+    rm -f /etc/service/sshd/down
+fi
