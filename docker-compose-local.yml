@@ -12,6 +12,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "mysqrootpass"
       MYSQL_ROOT_HOST: '%'
+      SMTP_HOST: 172.18.18.4
+      SMTP_PORT: 1025
     ports:
       - 3306:3306
 
@@ -36,6 +38,18 @@ services:
       - 2222:2222
     volumes:
       - /your/path/to/whmcs:/var/www/whmcs
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: "MAILHOG"
+    hostname: mailhog
+    restart: always
+    networks:
+      whmcs:
+        ipv4_address: 172.18.18.4
+    ports:
+      - 8025:8025
+      - 1025:1025
 
 networks:
   whmcs:
