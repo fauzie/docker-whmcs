@@ -59,3 +59,33 @@ Email
 If you need to send mail and cannot use SMTP directly, ssmtp is installed to provide `/usr/bin/sendmail` and is configured using the `SMTP_` variables.
 
 If SMTP_USER is not set, unauthenticated SMTP will be used and SSL/TLS is disabled.
+
+# Local WHMCS Development
+
+## WHMCS Dev License
+As long as you have an active WHMCS license, you can reach out to WHMCS Support and get a free dev License to use for your local development.
+This Docker setup makes sure you can use it across different machines since the valid IP will be the same. Make sure not to change the Hostname across machines or your dev license will become invalid and needs to be reiussed manually.
+
+## How to run it
+In docker-compose[-local].yml change ```- /your/path/to/whmcs:/var/www/whmcs``` to a directory with your whmcs install e.g. ```./../whmcs-local/public:/var/www/whmcs```
+
+Start your containers by running
+```console
+foo@bar:~$ docker-compose up
+```
+You can then access the container on http://localhost/. By default it maps to Port 80 which can be changed in the docker-compose.yml.
+Add whmcs.test (or whatever hostname you choose) to your hosts file pointing to 127.0.0.1 to use http://whmcs.test for local development.
+
+## Using Mailhog for E-Mail testing
+In docker-compose-local.yml we've added a third container running mailhog and configured the whmcs container to use it as their outgoing SMPT Server. The whmcs container is based on ajoergensen/baseimage-ubuntu and includes ssmtp which can be configured using the ENV Variables mentioned above.
+With this configuration all WHMCS E-mails will automatically be captured by mailhog. No configuration within WHMCS necessary, since the php mail() function will rely on the container settings.
+
+Start your containers with mailhog by specifying the compose file for local development. Or just rename it to docker-compose.yml if thats all you want to do.
+```console
+foo@bar:~$ docker-compose up -f docker-compose-local.yml
+```
+
+You can then access the mailhog webinterface on http://localhost:8025
+
+
+
