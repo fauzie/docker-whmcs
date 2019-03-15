@@ -16,7 +16,7 @@ services:
       - 3306:3306
 
   whmcs:
-    image: whmcs:latest
+    image: fauzie/docker-whmcs:latest
     container_name: "WHMCS"
     hostname: whmcs
     networks:
@@ -27,7 +27,7 @@ services:
       - mysql
     environment:
       WORKER_PROCESSES: 4
-      VIRTUAL_HOST: whmcs.yourwebsite.com
+      VIRTUAL_HOST: whmcs.test
       APP_PASSWORD: userapppassword
       WHMCS_SERVER_IP: 172.18.18.1
       HTTPS: "on"
