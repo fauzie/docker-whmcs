@@ -82,7 +82,7 @@ With this configuration all WHMCS E-mails will automatically be captured by mail
 
 Start your containers with mailhog by specifying the compose file for local development. Or just rename it to docker-compose.yml if thats all you want to do.
 ```console
-foo@bar:~$ docker-compose up -f docker-compose-local.yml
+foo@bar:~$ docker-compose -f docker-compose-local.yml up
 ```
 
 You can then access the mailhog webinterface on http://localhost:8025
