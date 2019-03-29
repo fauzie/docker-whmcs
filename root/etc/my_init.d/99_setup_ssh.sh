@@ -17,8 +17,8 @@ sed -ri 's/^#?PubkeyAuthentication\s+.*/PubkeyAuthentication yes/' /etc/ssh/sshd
 sed -ri 's/^#?AuthorizedKeysFile\s+.*/AuthorizedKeysFile \/var\/www\/.ssh\/authorized_keys/' /etc/ssh/sshd_config
 sed -ri 's/^#HostKey \/etc\/ssh_host_rsa_key/HostKey \/etc\/ssh\/ssh_host_rsa_key/' /etc/ssh/sshd_config
 sed -ri 's/^#ListenAddress\s0+.*/ListenAddress 0\.0\.0\.0/' /etc/ssh/sshd_config
-sed -ri 's/^#Port\s+.*/Port 2222/' /etc/ssh/sshd_config
 sed -ri 's/^#UsePAM\s+.*/UsePAM yes/' /etc/ssh/sshd_config
+sed -ri "s/^#Port\s+.*/Port ${SSH_PORT}/" /etc/ssh/sshd_config
 
 if [[ $SSH_PUBLIC_KEY != "" ]]
 then
