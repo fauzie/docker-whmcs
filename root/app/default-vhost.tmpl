@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name {{ default .Env.VIRTUAL_HOST "localhost.localdomain" }};
+    server_name {{ default .Env.VIRTUAL_HOST "whmcs.local" }};
 
     root   {{ default .Env.HOME "/var/www/whmcs" }};
     index  index.php index.html;
@@ -41,6 +41,8 @@ server {
 		include         fastcgi_params;
 		fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 		fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+		fastcgi_param   SERVER_NAME        {{ default .Env.PHP_VHOST "whmcs.local" }};
+		fastcgi_param   HTTP_HOST          {{ default .Env.PHP_VHOST "whmcs.local" }};
 		fastcgi_param   SERVER_ADDR        {{ default .Env.WHMCS_SERVER_IP "172.17.0.1" }};
 		fastcgi_param   HTTPS		       {{ default .Env.HTTPS "on" }};
 		fastcgi_keep_conn on;
