@@ -1,0 +1,15 @@
+session.save_handler = "{{ default .Env.PHP_SESSION_SAVE_HANDLER "files" }}"
+session.save_path = "{{ default .Env.PHP_SESSION_SAVE_PATH "/var/lib/php/sessions" }}"
+session.gc_divisor = {{ default .Env.PHP_SESSION_GC_DIVISOR "100" }}
+session.gc_probability = {{ default .Env.PHP_SESSION_GC_PROPABILITY "0" }}
+
+upload_max_filesize = "{{ default .Env.PHP_UPLOAD_MAX_FILESIZE "50M" }}"
+post_max_size = "{{ default .Env.PHP_POST_MAX_SIZE "8M" }}"
+zlib.output_compression = {{ default .Env.PHP_ZLIB_OUTPUT "Off" }}
+
+max_execution_time = {{ default .Env.PHP_MAX_EXECUTION_TIME "1800" }}
+max_input_time = {{ default .Env.PHP_MAX_INPUT_TIME "120" }}
+
+opcache.enable = {{ default .Env.PHP_OPCACHE_ENABLE "0" }}
+opcache.memory_consumption = {{ default .Env.PHP_OPCACHE_MEMORY "512" }}
+opcache.save_comments = {{ default .Env.PHP_OPCACHE_SAVE_COMMENTS "0" }}

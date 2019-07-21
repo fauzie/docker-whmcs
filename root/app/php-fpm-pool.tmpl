@@ -11,5 +11,6 @@ pm.min_spare_servers = {{ default .Env.FPM_MIN_SPARE_SERVERS "1" }}
 pm.max_spare_servers = {{ default .Env.FPM_MAX_SPARE_SERVERS "3" }}
 chdir = /
 catch_workers_output = yes
+request_terminate_timeout = 600
 php_admin_value[error_log] = {{ default .Env.FPM_ERROR_LOG "/dev/fd/2" }}
 php_admin_flag[log_errors] = on
