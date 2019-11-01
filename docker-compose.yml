@@ -28,6 +28,7 @@ services:
     environment:
       WORKER_PROCESSES: 4
       VIRTUAL_HOST: whmcs.test
+      PHP_VHOST: whmcs.test
       APP_PASSWORD: userapppassword
       WHMCS_SERVER_IP: 172.18.18.1
       HTTPS: "on"
