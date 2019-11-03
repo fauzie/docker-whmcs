@@ -4,7 +4,6 @@ LABEL	maintainer="Rizal Fauzie Ridwan <rizal@fauzie.my.id>"
 
 ENV     PHP_VERSION=7.2 \
         VIRTUAL_HOST=$DOCKER_HOST \
-        PHP_VHOST=$DOCKER_HOST \
         HOME=/var/www/whmcs \
         TZ=Asia/Jakarta \
         WHMCS_SERVER_IP=172.17.0.1 \

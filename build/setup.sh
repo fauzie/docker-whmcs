@@ -47,7 +47,7 @@ cd /tmp && curl -o ioncube.tar.gz http://downloads3.ioncube.com/loader_downloads
     cp /etc/php/${PHP_VERSION}/fpm/conf.d/00-ioncube.ini /etc/php/${PHP_VERSION}/cli/conf.d/.
 
 # Install Dockerize
-wget -qO - https://github.com/jwilder/dockerize/releases/download/v0.5.0/dockerize-linux-amd64-v0.5.0.tar.gz \
+wget -qO - https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
 	| tar zxf - -C /usr/local/bin
 
 # Cleanup
