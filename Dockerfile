@@ -17,6 +17,7 @@ COPY    build /build
 RUN     build/setup.sh && rm -rf /build
 
 COPY    root/ /
+COPY    --from=ajoergensen/baseimage-ubuntu /etc/service/. /etc/service/
 
 RUN     chmod -v +x /etc/my_init.d/*.sh /etc/service/*/run
 
